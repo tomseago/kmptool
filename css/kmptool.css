@@ -1,0 +1,170 @@
+body {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+body,
+input,
+textarea {
+  font-family: "Raleway", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+  -webkit-text-stroke: 1px transparent;
+  background-color: #fff;
+}
+.main.menu {
+  text-align: left;
+  -o-border-radius: 0;
+  -ms-border-radius: 0;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 4;
+}
+.centered.area {
+  margin: auto;
+}
+.centered.area.medium {
+  width: 40em;
+}
+.centered.area.half {
+  width: 50%;
+}
+.centered.area.three.quarters {
+  width: 75%;
+}
+#globalExceptions {
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+  width: 40%;
+  z-index: 999999;
+}
+#globalExceptions .exception {
+  padding: 1rem;
+  margin-top: 1rem;
+  background: #000;
+  color: #d92626;
+  border: 4px solid #f00;
+  cursor: pointer;
+  text-align: center;
+}
+#globalExceptions .exception .guru {
+  margin-bottom: 0.5em;
+}
+#globalExceptions .exception .headline {
+  font-weight: bold;
+}
+#globalExceptions .exception .uuid {
+  font-size: 1.4em;
+  padding: 0.5em;
+}
+#globalExceptions .exception .cause {
+  font-size: 0.8em;
+}
+#globalExceptions .exception:hover {
+  color: #f00;
+  border: 4px solid #f00;
+}
+.general.message {
+  padding: 0;
+  z-index: 1001;
+}
+.general.message .message {
+  margin: 0;
+  -o-border-radius: 0;
+  -ms-border-radius: 0;
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+  height: 100%;
+  text-align: center;
+  padding-top: 0.6rem;
+}
+.clear-bottom {
+  clear: both;
+}
+a {
+  color: inherit;
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+}
+a:visited {
+  color: inherit;
+}
+a:hover {
+  color: #237cbe;
+  text-decoration-style: solid;
+}
+.ui.primary.buttons .button,
+.ui.primary.button {
+  background-color: #35af64;
+  color: #fff;
+}
+.ui.primary.buttons .button:hover,
+.ui.primary.button:hover,
+.ui.primary.buttons .active.button,
+.ui.primary.button.active {
+  background-color: #23c160;
+  color: #fff;
+}
+.ui.primary.buttons .button:active,
+.ui.primary.button:active {
+  background-color: #309e5a;
+  color: #fff;
+}
+.ui.secondary.buttons .button,
+.ui.secondary.button {
+  background-color: #237cbe;
+  color: #fff;
+}
+.ui.secondary.buttons .button:hover,
+.ui.secondary.button:hover,
+.ui.secondary.buttons .active.button,
+.ui.secondary.button.active {
+  background-color: #0c7fd5;
+  color: #fff;
+}
+.ui.secondary.buttons .button:active,
+.ui.secondary.button:active {
+  background-color: #1f70ab;
+  color: #fff;
+}
+.ui.toggle.buttons .active.button,
+.ui.buttons .button.toggle.active,
+.ui.button.toggle.active {
+  background-color: #67d190 !important;
+}
+.ui.button.toggle.active:hover {
+  background-color: #0bd95b !important;
+}
+.ui.positive.buttons .button,
+.ui.positive.button {
+  background-color: #35af64 !important;
+}
+.ui.positive.buttons .button:hover,
+.ui.positive.button:hover,
+.ui.positive.buttons .active.button,
+.ui.positive.button.active {
+  background-color: #23c160 !important;
+}
+.ui.positive.buttons .button:active,
+.ui.positive.button:active {
+  background-color: #309e5a !important;
+}
+.ui.negative.buttons .button,
+.ui.negative.button {
+  background-color: #ee691c !important;
+}
+.ui.negative.buttons .button:hover,
+.ui.negative.button:hover,
+.ui.negative.buttons .active.button,
+.ui.negative.button.active {
+  background-color: #ff6100 !important;
+}
+.ui.negative.buttons .button:active,
+.ui.negative.button:active {
+  background-color: #df5c11 !important;
+}
