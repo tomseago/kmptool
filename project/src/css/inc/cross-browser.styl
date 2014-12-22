@@ -1,0 +1,89 @@
+////////////////////////////////////////////////////////////////
+//
+//  Cross Browser support macros
+//
+//  Use these as follows. Instead of writing out longhand in the .styl file
+//
+//      .something
+//          -ms-transition: 1s linear all
+//          -webkit-transition: 1s linear all
+//          -moz-transition: 1s linear all
+//          transition: 1s linear all
+//
+//
+//  Simply write it as
+//
+//      .something
+//          transition: 1s linear all
+//
+//  And then these helpers will take care of the rest by expanding out to the
+//  four line stanza.
+
+animation()
+    -o-animation: arguments
+    -ms-animation: arguments
+    -moz-animation: arguments
+    -webkit-animation: arguments
+    animation: arguments
+
+transition()
+    -o-transition: arguments
+    -ms-transition: arguments
+    -moz-transition: arguments
+    -webkit-transition: arguments
+    transition: arguments
+
+transform()
+    -o-transform: arguments
+    -ms-transform: arguments
+    -moz-transform: arguments
+    -webkit-transform: arguments
+    transform: arguments
+
+transform-origin()
+    -o-transform-origin: arguments
+    -ms-transform-origin: arguments
+    -moz-transform-origin: arguments
+    -webkit-transform-origin: arguments
+    transform-origin: arguments
+
+border-radius()
+    -o-border-radius: arguments
+    -ms-border-radius: arguments
+    -moz-border-radius: arguments
+    -webkit-border-radius: arguments
+    border-radius: arguments
+
+border-bottom-left-radius()
+    -moz-border-radius-bottomleft: arguments
+    -webkit-border-bottom-left-radius: arguments
+    border-bottom-left-radius: arguments
+
+border-bottom-right-radius()
+    -moz-border-radius-bottomright: arguments
+    -webkit-border-bottom-right-radius: arguments
+    border-bottom-right-radius: arguments
+
+border-top-left-radius()
+    -moz-border-radius-topleft: arguments
+    -webkit-border-top-left-radius: arguments
+    border-top-left-radius: arguments
+
+border-top-right-radius()
+    -moz-border-radius-topright: arguments
+    -webkit-border-top-right-radius: arguments
+    border-top-right-radius: arguments
+
+background-size()
+    -o-background-size: arguments
+    -ms-background-size: arguments
+    -moz-background-size: arguments
+    -webkit-background-size: arguments
+    background-size: arguments
+
+user-select()
+    -o-user-select: arguments
+    -ms-user-select: arguments
+    -moz-user-select: arguments
+    -webkit-user-select: arguments
+    user-select: arguments

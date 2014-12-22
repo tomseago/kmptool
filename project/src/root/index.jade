@@ -1,0 +1,40 @@
+extends layout.jade
+
+block content
+    #globalExceptions(ng-show="gExceptions.length > 0" ng-cloak)
+        .exception.item(ng-repeat="(ix, ex) in gExceptions" )
+            .guru(ng-click="removeException(ex)") Guru Meditation Error. Click to remove.
+            .uuid {{ex.uuid}}  
+            .headline(ng-click="removeException(ex)") {{ex.headline}}
+            .cause(ng-click="removeException(ex)") {{ex.cause}}
+    .ui.bottom.sidebar.general.message
+        .ui.message {{gGeneralMessage}}
+    #app(ng-cloak).pusher
+        #menu.ui.inverted.main.menu(XXng-controller="MenuCtrl")
+            a.item(href="/#/dashboard")
+                i.home.icon
+                | Home
+            
+            // .ui.inverted.right.menu
+            //     .ui.dropdown.item
+            //         img.title.bar.user.thumbnail(ng-src="{{gUserThumbnail}}" ng-show="gUserThumbnail")
+            //         img.title.bar.user.thumbnail(ng-src="/images/generic-user.png" ng-hide="gUserThumbnail")
+            //         | {{gUserName}}
+            //         i.dropdown.icon
+            //         .menu
+            //             .item(ng-click="gotoOrg()" ng-show="gUserOrg") 
+            //                 img.title.bar.org.logo(ng-src="{{orgPic}}" ng-show="orgPic")
+            //                 img.title.bar.org.logo(ng-src="/images/generic-org.png" ng-hide="orgPic")
+            //                 | {{orgName}}
+            //             .item(ng-click="createOrg()" ng-hide="gUserOrg") 
+            //                 i.dollar.icon
+            //                 | Purchase an Organization Account
+            //             .item(ng-click="gotoSettings()")
+            //                 i.user.icon
+            //                 | Profile Settings
+            //             .item(ng-click="logout()") 
+            //                 i.signout.icon
+            //                 | Logout
+
+        #view(ng-view )
+

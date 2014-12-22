@@ -1,0 +1,233 @@
+
+KMP_ORANGE = #EE691C
+KMP_BLUE = #237CBE
+KMP_GREEN = #35AF64
+
+// For the flower
+KMP_STIGMA = #072308
+KMP_IRIS = #FFFFFF
+
+KMP_GRAY_PETAL = #BCBEC0
+KMP_GRAY_STIGMA = #666a6d
+    
+
+
+body
+    padding: 0
+    margin: 0
+    width: 100%
+
+body, input, textarea 
+    font-family "Raleway", "Helvetica Neue", "Helvetica", Arial, sans-serif
+    // Font testing area
+    -webkit-text-stroke: 1px transparent;
+
+    // Gets overwritten on login screen, but if we don't specify here then IE can end up leaving it black
+    background-color: #ffffff
+
+
+.main.menu
+    text-align left
+    border-radius 0
+    position fixed
+    top 0
+    left 0
+    width 100%
+    // Mapbox sets it's container to a z-index of 3 - we want our menu to appear above it
+    z-index 4
+
+
+
+.centered.area
+    margin auto
+
+    &.medium
+        width 40em
+    &.half
+        width 50%
+    
+    &.three.quarters
+        width 75%
+
+#globalExceptions
+    position: fixed
+    top: 2rem
+    left: 2rem
+    width: 40%
+    z-index: 999999
+
+    .exception
+        padding: 1rem
+        margin-top: 1rem
+        background: #000000
+        color: desaturate(#ff0000, 30%)
+        border: 4px solid #ff0000
+        cursor: pointer
+        text-align: center
+
+        .guru
+            margin-bottom: 0.5em
+
+        .headline
+            font-weight: bold
+
+        .uuid
+            font-size: 1.4em
+            padding: 0.5em
+
+        .cause
+            font-size: 0.8em
+
+
+        &:hover
+            color: #ff0000
+            border: 4px solid #ff0000
+
+.general.message
+    padding 0
+    z-index 1001
+    
+    .message
+        margin 0
+        border-radius 0
+        height 100%
+        text-align center
+        padding-top 0.6rem
+        
+
+// showClickable()
+//     cursor: pointer
+
+//     &:hover
+//         box-shadow: 0 0 10px KMP_BLUE
+
+// .show.clickable
+//     showClickable()
+
+//     &.icon:hover
+//         box-shadow: none
+//         text-shadow: 0 0 5px KMP_BLUE
+
+
+.clear-bottom
+    clear: both
+
+// Make regular anchor links look better
+
+a
+    color: inherit
+    text-decoration-line: underline
+    text-decoration-style: dashed
+
+a:visited
+    color: inherit
+
+a:hover
+    color: KMP_BLUE
+    text-decoration-style: solid
+
+///////////////////
+// Overrides for semantic button colors
+
+// hover = more saturated
+// active = darker
+SAT_AMT=30%
+DARK_AMT=10%
+
+/*-------------------
+       Primary
+--------------------*/
+// Semantic is red
+.ui.primary.buttons .button
+.ui.primary.button 
+    background-color: KMP_GREEN
+    color: #FFFFFF
+
+.ui.primary.buttons .button:hover
+.ui.primary.button:hover
+.ui.primary.buttons .active.button
+.ui.primary.button.active 
+    background-color: saturate(KMP_GREEN, SAT_AMT)
+    color: #FFFFFF
+
+.ui.primary.buttons .button:active
+.ui.primary.button:active 
+    background-color: darken(KMP_GREEN, DARK_AMT)
+    color: #FFFFFF
+
+
+/*-------------------
+      Secondary
+--------------------*/
+// Semantic is cyan
+.ui.secondary.buttons .button
+.ui.secondary.button 
+    background-color: KMP_BLUE
+    color: #FFFFFF
+
+.ui.secondary.buttons .button:hover
+.ui.secondary.button:hover
+.ui.secondary.buttons .active.button
+.ui.secondary.button.active 
+    background-color: saturate(KMP_BLUE, SAT_AMT)
+    color: #FFFFFF;
+
+.ui.secondary.buttons .button:active,
+.ui.secondary.button:active 
+    background-color: darken(KMP_BLUE, DARK_AMT)
+    color: #FFFFFF;
+
+
+
+/*--------------
+     Toggle
+---------------*/
+/* Toggle (Modifies active state to give affordances) */
+// Semantic is green here. We use just a much brighter green, so probably
+// doesn't work that well :(
+.ui.toggle.buttons .active.button
+.ui.buttons .button.toggle.active
+.ui.button.toggle.active 
+    background-color: lighten(KMP_GREEN, 30%) !important;
+
+.ui.button.toggle.active:hover
+    // Copied lighten(KMP_GREEN, 30%)
+    background-color: saturate( #23c160, 30%) !important;
+
+
+/*---------------
+    Positive
+----------------*/
+// semantic is green
+.ui.positive.buttons .button
+.ui.positive.button 
+  background-color: KMP_GREEN !important;
+
+.ui.positive.buttons .button:hover
+.ui.positive.button:hover
+.ui.positive.buttons .active.button
+.ui.positive.button.active 
+  background-color: saturate(KMP_GREEN, SAT_AMT) !important;
+
+.ui.positive.buttons .button:active
+.ui.positive.button:active 
+  background-color: darken(KMP_GREEN, DARK_AMT) !important;
+
+
+/*---------------
+     Negative
+----------------*/
+// Semantic is red
+.ui.negative.buttons .button
+.ui.negative.button 
+  background-color: KMP_ORANGE !important
+
+.ui.negative.buttons .button:hover
+.ui.negative.button:hover
+.ui.negative.buttons .active.button
+.ui.negative.button.active 
+  background-color: saturate(KMP_ORANGE, SAT_AMT) !important;
+
+.ui.negative.buttons .button:active
+.ui.negative.button:active 
+  background-color: darken(KMP_ORANGE, DARK_AMT) !important;
