@@ -149,8 +149,24 @@ gulp.task('browserify', function() {
 });
 
 
+//////////////////////////////////////////////////////////////////////////////////////////
+gulp.task('semantic-ui', function () {
+    return gulp.src('../../Semantic-UI-kmptool/dist/{*.js,*.css,themes/default/**/*}')
+        //.pipe( changed("dist/semantic") )
+        .pipe( plumber( { errorHandler: errorBeep } ) )
+        .pipe(gulp.dest('dist/semantic'))
+});
 
-gulp.task("build",  ["html_templates", "js_templates", "stylus", "images", "browserify"], function() {  });
+
+
+gulp.task("build",  [
+    "html_templates"
+    , "js_templates"
+    , "stylus"
+    , "images"
+    , "browserify"
+    , "semantic-ui"
+    ], function() {  });
 
 //////////////////////////////////////////////////////////////////////////////////////////
 gulp.task("server", function(cb) {    
@@ -171,7 +187,8 @@ gulp.task('default', ["build"], function(cb) {
     gulp.watch("src/css/**/*.styl", ["stylus"]);
     gulp.watch("src/images/**/*", ["images"]);
     gulp.watch("src/js/**/*.js", ["browserify"]);
-    gulp.watch("src/js/index.js", ["index_js"]);
+    //gulp.watch("src/js/index.js", ["index_js"]);
+    gulp.watch("../../Semantic-UI-kmptool/dist/*.{js,css}", ["semantic-ui"]);
 
     gulp.start("server");
 });

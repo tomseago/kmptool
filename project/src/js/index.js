@@ -7,3 +7,5 @@ require("logger");
 
 require("./app");
 require("./controllers/start");
+require("./controllers/project-list");
+require("./controllers/top-bar");

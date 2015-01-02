@@ -1,0 +1,43 @@
+ SHORT_ANIM_DURATION = 100ms
+ DEBUG_ANIM_DURATION = 5s
+ 
+ showHideCrossFade()
+    &.ng-hide-add
+    &.ng-hide-remove
+        transition 0s linear all
+    
+    &.ng-hide-add-active
+    &.ng-hide-remove-active
+        transition SHORT_ANIM_DURATION linear all
+        
+    &.ng-hide-add
+    &.ng-hide-remove.ng-hide-remove-active
+        opacity 1 !important
+     
+    &.ng-hide-remove
+    &.ng-hide-add.ng-hide-add-active
+        opacity 0 !important
+
+.show-hide-cross-fade
+    showHideCrossFade()
+    
+showHideSlideVertical(dist=100px)
+    &.ng-hide-add
+    &.ng-hide-remove
+        transition 0s linear all
+    
+    &.ng-hide-add-active
+    &.ng-hide-remove-active
+        transition SHORT_ANIM_DURATION linear all
+        
+    &.ng-hide-add
+    &.ng-hide-remove.ng-hide-remove-active
+        top: 0px !important
+     
+    &.ng-hide-remove
+    &.ng-hide-add.ng-hide-add-active
+        top: dist !important
+
+.show-hide-slide-vertical
+    showHideSlideVertical()
+    

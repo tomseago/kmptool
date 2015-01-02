@@ -58,10 +58,9 @@ kmptoolApp = angular.module("kmptoolApp", [
             templateUrl : 'html/start.html'
             , controller : "StartCtrl"
 
-        // }).when('/newUser', {
-        //     templateUrl : 'html/new-user.html'
-        //     , controller : "NewUserCtrl"
-
+        }).when('/projectList', {
+            templateUrl : 'html/project-list.html'
+            , controller : "ProjectListCtrl"
 
         }).otherwise({
             redirectTo : '/start'

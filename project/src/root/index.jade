@@ -10,10 +10,13 @@ block content
     .ui.bottom.sidebar.general.message
         .ui.message {{gGeneralMessage}}
     #app(ng-cloak).pusher
-        #menu.ui.inverted.main.menu(XXng-controller="MenuCtrl")
-            a.item(href="/#/dashboard")
+        #menu.ui.inverted.main.menu(ng-controller="TopBarCtrl")
+            a.item(href="/#/start")
                 i.home.icon
                 | Home
+            a.item(href="/#/projectList")
+                i.folder.icon
+                | Projects
             
             // .ui.inverted.right.menu
             //     .ui.dropdown.item
@@ -35,6 +38,11 @@ block content
             //             .item(ng-click="logout()") 
             //                 i.signout.icon
             //                 | Logout
-
-        #view(ng-view )
+        .pusher
+            #view(ng-view )
+            
+    #footer.ui.inverted.black.footer.vertical.segment
+        .container
+            p Some text??
+                
 

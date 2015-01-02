@@ -1,29 +1,43 @@
+/*---  Colors  ---*/
+KMP_black            = #1B1C1D;
+KMP_blue             = #0568A6;
+KMP_green            = #2BD963;
+KMP_grey             = #CCCCCC;
+KMP_orange           = #FFB624;
+KMP_pink             = #FF8169;
+KMP_purple           = #B457DD;
+KMP_red              = #A60321;
+KMP_teal             = #52C0D9;
+KMP_yellow           = #F3E52E;
 
-KMP_ORANGE = #EE691C
-KMP_BLUE = #237CBE
-KMP_GREEN = #35AF64
+/*---  Light Colors  ---*/
+KMP_lightBlack       = #333333;
+KMP_lightBlue        = #5BA9D9;
+KMP_lightGreen       = #78F2A0;
+KMP_lightOrange      = #F2CC80;
+KMP_lightPink        = #FFA99A;
+KMP_lightPurple      = #E0A0FF;
+KMP_lightRed         = #FF695E;
+KMP_lightTeal        = #A7E4F2;
+KMP_lightYellow      = #FFF474;
 
-// For the flower
-KMP_STIGMA = #072308
-KMP_IRIS = #FFFFFF
+/*---   Neutrals  ---*/
+KMP_fullBlack        = #000000;
+KMP_darkGrey         = #AAAAAA;
+KMP_lightGrey        = #DCDDDE;
+KMP_offWhite         = #FAFAFA;
+KMP_darkWhite        = #F0F0F0;
+KMP_white            = #FFFFFF;
 
-KMP_GRAY_PETAL = #BCBEC0
-KMP_GRAY_STIGMA = #666a6d
-    
+// body
+//     padding: 0
+//     margin: 0
+//     width: 100%
 
-
-body
-    padding: 0
-    margin: 0
-    width: 100%
-
-body, input, textarea 
-    font-family "Raleway", "Helvetica Neue", "Helvetica", Arial, sans-serif
-    // Font testing area
-    -webkit-text-stroke: 1px transparent;
-
-    // Gets overwritten on login screen, but if we don't specify here then IE can end up leaving it black
-    background-color: #ffffff
+// body, input, textarea 
+//     font-family "Raleway", "Helvetica Neue", "Helvetica", Arial, sans-serif
+//     // Font testing area
+//     -webkit-text-stroke: 1px transparent;
 
 
 .main.menu
@@ -36,7 +50,19 @@ body, input, textarea
     // Mapbox sets it's container to a z-index of 3 - we want our menu to appear above it
     z-index 4
 
-
+body
+    min-height: 100%
+    
+#app
+    min-height: 100%
+    
+    .pusher
+        padding-top: 4rem
+        
+#footer
+    clear both
+    height: 3rem
+    margin-top: -3rem
 
 .centered.area
     margin auto
@@ -95,18 +121,19 @@ body, input, textarea
         padding-top 0.6rem
         
 
-// showClickable()
-//     cursor: pointer
+showClickable()
+    cursor: pointer
 
-//     &:hover
-//         box-shadow: 0 0 10px KMP_BLUE
+    &:hover
+        box-shadow: 0 0 10px KMP_blue
 
-// .show.clickable
-//     showClickable()
+    &.icon:hover
+        box-shadow: none
+        text-shadow: 0 0 5px KMP_blue
 
-//     &.icon:hover
-//         box-shadow: none
-//         text-shadow: 0 0 5px KMP_BLUE
+.show.clickable
+    showClickable()
+
 
 
 .clear-bottom
@@ -127,107 +154,33 @@ a:hover
     text-decoration-style: solid
 
 ///////////////////
-// Overrides for semantic button colors
 
-// hover = more saturated
-// active = darker
-SAT_AMT=30%
-DARK_AMT=10%
-
-/*-------------------
-       Primary
---------------------*/
-// Semantic is red
-.ui.primary.buttons .button
-.ui.primary.button 
-    background-color: KMP_GREEN
-    color: #FFFFFF
-
-.ui.primary.buttons .button:hover
-.ui.primary.button:hover
-.ui.primary.buttons .active.button
-.ui.primary.button.active 
-    background-color: saturate(KMP_GREEN, SAT_AMT)
-    color: #FFFFFF
-
-.ui.primary.buttons .button:active
-.ui.primary.button:active 
-    background-color: darken(KMP_GREEN, DARK_AMT)
-    color: #FFFFFF
+ /*--------------
+     We use delete buttons for many things in lists so they
+     are treated as a mix-in in jade. 
+ ---------------*/
+ 
 
 
-/*-------------------
-      Secondary
---------------------*/
-// Semantic is cyan
-.ui.secondary.buttons .button
-.ui.secondary.button 
-    background-color: KMP_BLUE
-    color: #FFFFFF
-
-.ui.secondary.buttons .button:hover
-.ui.secondary.button:hover
-.ui.secondary.buttons .active.button
-.ui.secondary.button.active 
-    background-color: saturate(KMP_BLUE, SAT_AMT)
-    color: #FFFFFF;
-
-.ui.secondary.buttons .button:active,
-.ui.secondary.button:active 
-    background-color: darken(KMP_BLUE, DARK_AMT)
-    color: #FFFFFF;
+.delete-button
+    
+    width: 11rem
+    height: 2.2rem
+    position: relative
+    overflow: hidden
+    
+    .state
+        display: inline-block
+        position: absolute
+        right: 0
+        showHideSlideVertical(-2.2rem)
+        
+    .label
+        display: inline-block
+        margin-right: 1rem
 
 
-
-/*--------------
-     Toggle
----------------*/
-/* Toggle (Modifies active state to give affordances) */
-// Semantic is green here. We use just a much brighter green, so probably
-// doesn't work that well :(
-.ui.toggle.buttons .active.button
-.ui.buttons .button.toggle.active
-.ui.button.toggle.active 
-    background-color: lighten(KMP_GREEN, 30%) !important;
-
-.ui.button.toggle.active:hover
-    // Copied lighten(KMP_GREEN, 30%)
-    background-color: saturate( #23c160, 30%) !important;
-
-
-/*---------------
-    Positive
-----------------*/
-// semantic is green
-.ui.positive.buttons .button
-.ui.positive.button 
-  background-color: KMP_GREEN !important;
-
-.ui.positive.buttons .button:hover
-.ui.positive.button:hover
-.ui.positive.buttons .active.button
-.ui.positive.button.active 
-  background-color: saturate(KMP_GREEN, SAT_AMT) !important;
-
-.ui.positive.buttons .button:active
-.ui.positive.button:active 
-  background-color: darken(KMP_GREEN, DARK_AMT) !important;
-
-
-/*---------------
-     Negative
-----------------*/
-// Semantic is red
-.ui.negative.buttons .button
-.ui.negative.button 
-  background-color: KMP_ORANGE !important
-
-.ui.negative.buttons .button:hover
-.ui.negative.button:hover
-.ui.negative.buttons .active.button
-.ui.negative.button.active 
-  background-color: saturate(KMP_ORANGE, SAT_AMT) !important;
-
-.ui.negative.buttons .button:active
-.ui.negative.button:active 
-  background-color: darken(KMP_ORANGE, DARK_AMT) !important;
+.page.middle
+    max-width: 200px
+    Xmargin-left: auto
+    Xmargin-right: auto

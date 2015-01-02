@@ -1,0 +1,22 @@
+mixin deleteButton(id, onClick)
+    .ui.right.floated.delete-button
+        button.state.ui.compact.red.icon.button(ng-click=id+"_del_button = true; $event.stopPropagation();", ng-hide=id+"_del_button")
+            i.trash.icon
+        .state(ng-show=id+"_del_button")
+            .label Delete?
+            button.ui.compact.red.icon.button(ng-click=onClick)
+                i.check.icon
+            button.ui.compact.icon.button(ng-click=id+"_del_button = false; $event.stopPropagation();")
+                i.undo.icon
+
+
+.project-list.page
+    .three.quarters.centered.area
+        h1.ui.header Projects
+        
+        .ui.animated.celled.list.of.projects
+            .project.item(ng-repeat="project in projects" ng-click="openProject($event, project)")
+                +deleteButton("project.id", "deleteProject($event, project)")
+                .content
+                    h2.name.header {{project.name}}
+                    
