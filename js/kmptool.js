@@ -8,7 +8,9 @@ require("logger");
 
 require("./app");
 require("./controllers/start");
-},{"./app":12,"./controllers/start":13,"logger":17}],2:[function(require,module,exports){
+require("./controllers/project-list");
+require("./controllers/top-bar");
+},{"./app":12,"./controllers/project-list":13,"./controllers/start":14,"./controllers/top-bar":15,"logger":19}],2:[function(require,module,exports){
 
 },{}],3:[function(require,module,exports){
 /*!
@@ -2306,10 +2308,9 @@ kmptoolApp = angular.module("kmptoolApp", [
             templateUrl : 'html/start.html'
             , controller : "StartCtrl"
 
-        // }).when('/newUser', {
-        //     templateUrl : 'html/new-user.html'
-        //     , controller : "NewUserCtrl"
-
+        }).when('/projectList', {
+            templateUrl : 'html/project-list.html'
+            , controller : "ProjectListCtrl"
 
         }).otherwise({
             redirectTo : '/start'
@@ -2679,7 +2680,49 @@ kmptoolApp = angular.module("kmptoolApp", [
 
     
 
-},{"client-utils":14,"doc-cookies":15,"logger":17,"logger-ring-buffer":16}],13:[function(require,module,exports){
+},{"client-utils":16,"doc-cookies":17,"logger":19,"logger-ring-buffer":18}],13:[function(require,module,exports){
+var Logger = require("logger");
+
+
+kmptoolApp.controller('ProjectListCtrl'
+    , [ "$scope", "kmpSvc", "$timeout"
+    , function($scope, kmpSvc, $timeout) {
+        
+        $scope.projects = [
+            {
+                id: 1
+                , name: "One"
+            }
+            , {
+                id: 2
+                , name: "Two"
+            }
+            , {
+                id: 2
+                , name: "Three"
+            }
+            , {
+                id: 2
+                , name: "Four"
+            }
+        ];
+        
+        $scope.deleteProject = function($event, project) {
+            console.log($event);
+            Logger.infoi("Delete ", project);
+            
+            $event.stopPropagation();
+        }
+
+        $scope.openProject = function($event, project) {
+            console.log($event);
+            Logger.infoi("Open ", project);
+
+            $event.stopPropagation();
+        }
+    }])
+
+},{"logger":19}],14:[function(require,module,exports){
 var Logger = require("logger");
 
 
@@ -2696,7 +2739,17 @@ kmptoolApp.controller('StartCtrl'
         }, 2000);
     }])
 
-},{"logger":17}],14:[function(require,module,exports){
+},{"logger":19}],15:[function(require,module,exports){
+var Logger = require("logger");
+
+
+kmptoolApp.controller('TopBarCtrl'
+    , [ "$scope", "kmpSvc", "$timeout"
+    , function($scope, kmpSvc, $timeout) {
+        
+    }])
+
+},{"logger":19}],16:[function(require,module,exports){
 var Logger = require("logger");
 
 /**
@@ -2749,7 +2802,7 @@ exports.uuid = function(len, chars) {
     return uuid.join('');
 };
 
-},{"logger":17}],15:[function(require,module,exports){
+},{"logger":19}],17:[function(require,module,exports){
 /*\
 |*|
 |*|  :: cookies.js ::
@@ -2808,7 +2861,7 @@ module.exports = {
     return aKeys;
   }
 };
-},{}],16:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 var Logger = require("logger")
 
 function LoggerRingBuffer(options) {
@@ -2864,7 +2917,7 @@ LRB.copyContent = function() {
 
     return out;
 }
-},{"logger":17}],17:[function(require,module,exports){
+},{"logger":19}],19:[function(require,module,exports){
 (function (process,Buffer){
 /*****
  * Copyright (c) 2011 Tom Seago

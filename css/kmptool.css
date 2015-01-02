@@ -1,14 +1,50 @@
-body {
-  padding: 0;
-  margin: 0;
-  width: 100%;
+.show-hide-cross-fade.ng-hide-add,
+.show-hide-cross-fade.ng-hide-remove {
+  -o-transition: 0s linear all;
+  -ms-transition: 0s linear all;
+  -moz-transition: 0s linear all;
+  -webkit-transition: 0s linear all;
+  transition: 0s linear all;
 }
-body,
-input,
-textarea {
-  font-family: "Raleway", "Helvetica Neue", "Helvetica", Arial, sans-serif;
-  -webkit-text-stroke: 1px transparent;
-  background-color: #fff;
+.show-hide-cross-fade.ng-hide-add-active,
+.show-hide-cross-fade.ng-hide-remove-active {
+  -o-transition: 100ms linear all;
+  -ms-transition: 100ms linear all;
+  -moz-transition: 100ms linear all;
+  -webkit-transition: 100ms linear all;
+  transition: 100ms linear all;
+}
+.show-hide-cross-fade.ng-hide-add,
+.show-hide-cross-fade.ng-hide-remove.ng-hide-remove-active {
+  opacity: 1 !important;
+}
+.show-hide-cross-fade.ng-hide-remove,
+.show-hide-cross-fade.ng-hide-add.ng-hide-add-active {
+  opacity: 0 !important;
+}
+.show-hide-slide-vertical.ng-hide-add,
+.show-hide-slide-vertical.ng-hide-remove {
+  -o-transition: 0s linear all;
+  -ms-transition: 0s linear all;
+  -moz-transition: 0s linear all;
+  -webkit-transition: 0s linear all;
+  transition: 0s linear all;
+}
+.show-hide-slide-vertical.ng-hide-add-active,
+.show-hide-slide-vertical.ng-hide-remove-active {
+  -o-transition: 100ms linear all;
+  -ms-transition: 100ms linear all;
+  -moz-transition: 100ms linear all;
+  -webkit-transition: 100ms linear all;
+  transition: 100ms linear all;
+}
+.show-hide-slide-vertical.ng-hide-add,
+.show-hide-slide-vertical.ng-hide-remove.ng-hide-remove-active {
+  top: 0px !important;
+}
+.show-hide-slide-vertical.ng-hide-remove,
+.show-hide-slide-vertical.ng-hide-add.ng-hide-add-active {
+  top: 100px !important;
 }
 .main.menu {
   text-align: left;
@@ -22,6 +58,20 @@ textarea {
   left: 0;
   width: 100%;
   z-index: 4;
+}
+body {
+  min-height: 100%;
+}
+#app {
+  min-height: 100%;
+}
+#app .pusher {
+  padding-top: 4rem;
+}
+#footer {
+  clear: both;
+  height: 3rem;
+  margin-top: -3rem;
 }
 .centered.area {
   margin: auto;
@@ -83,6 +133,16 @@ textarea {
   text-align: center;
   padding-top: 0.6rem;
 }
+.show.clickable {
+  cursor: pointer;
+}
+.show.clickable:hover {
+  box-shadow: 0 0 10px #0568a6;
+}
+.show.clickable.icon:hover {
+  box-shadow: none;
+  text-shadow: 0 0 5px #0568a6;
+}
 .clear-bottom {
   clear: both;
 }
@@ -95,76 +155,60 @@ a:visited {
   color: inherit;
 }
 a:hover {
-  color: #237cbe;
+  color: KMP_BLUE;
   text-decoration-style: solid;
 }
-.ui.primary.buttons .button,
-.ui.primary.button {
-  background-color: #35af64;
-  color: #fff;
+.delete-button {
+  width: 11rem;
+  height: 2.2rem;
+  position: relative;
+  overflow: hidden;
 }
-.ui.primary.buttons .button:hover,
-.ui.primary.button:hover,
-.ui.primary.buttons .active.button,
-.ui.primary.button.active {
-  background-color: #23c160;
-  color: #fff;
+.delete-button .state {
+  display: inline-block;
+  position: absolute;
+  right: 0;
 }
-.ui.primary.buttons .button:active,
-.ui.primary.button:active {
-  background-color: #309e5a;
-  color: #fff;
+.delete-button .state.ng-hide-add,
+.delete-button .state.ng-hide-remove {
+  -o-transition: 0s linear all;
+  -ms-transition: 0s linear all;
+  -moz-transition: 0s linear all;
+  -webkit-transition: 0s linear all;
+  transition: 0s linear all;
 }
-.ui.secondary.buttons .button,
-.ui.secondary.button {
-  background-color: #237cbe;
-  color: #fff;
+.delete-button .state.ng-hide-add-active,
+.delete-button .state.ng-hide-remove-active {
+  -o-transition: 100ms linear all;
+  -ms-transition: 100ms linear all;
+  -moz-transition: 100ms linear all;
+  -webkit-transition: 100ms linear all;
+  transition: 100ms linear all;
 }
-.ui.secondary.buttons .button:hover,
-.ui.secondary.button:hover,
-.ui.secondary.buttons .active.button,
-.ui.secondary.button.active {
-  background-color: #0c7fd5;
-  color: #fff;
+.delete-button .state.ng-hide-add,
+.delete-button .state.ng-hide-remove.ng-hide-remove-active {
+  top: 0px !important;
 }
-.ui.secondary.buttons .button:active,
-.ui.secondary.button:active {
-  background-color: #1f70ab;
-  color: #fff;
+.delete-button .state.ng-hide-remove,
+.delete-button .state.ng-hide-add.ng-hide-add-active {
+  top: -2.2rem !important;
 }
-.ui.toggle.buttons .active.button,
-.ui.buttons .button.toggle.active,
-.ui.button.toggle.active {
-  background-color: #67d190 !important;
+.delete-button .label {
+  display: inline-block;
+  margin-right: 1rem;
 }
-.ui.button.toggle.active:hover {
-  background-color: #0bd95b !important;
+.page.middle {
+  max-width: 200px;
+  Xmargin-left: auto;
+  Xmargin-right: auto;
 }
-.ui.positive.buttons .button,
-.ui.positive.button {
-  background-color: #35af64 !important;
+.project-list.page .project.item {
+  cursor: pointer;
 }
-.ui.positive.buttons .button:hover,
-.ui.positive.button:hover,
-.ui.positive.buttons .active.button,
-.ui.positive.button.active {
-  background-color: #23c160 !important;
+.project-list.page .project.item:hover {
+  box-shadow: 0 0 10px #0568a6;
 }
-.ui.positive.buttons .button:active,
-.ui.positive.button:active {
-  background-color: #309e5a !important;
-}
-.ui.negative.buttons .button,
-.ui.negative.button {
-  background-color: #ee691c !important;
-}
-.ui.negative.buttons .button:hover,
-.ui.negative.button:hover,
-.ui.negative.buttons .active.button,
-.ui.negative.button.active {
-  background-color: #ff6100 !important;
-}
-.ui.negative.buttons .button:active,
-.ui.negative.button:active {
-  background-color: #df5c11 !important;
+.project-list.page .project.item.icon:hover {
+  box-shadow: none;
+  text-shadow: 0 0 5px #0568a6;
 }
