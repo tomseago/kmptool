@@ -9,15 +9,38 @@ block content
             .cause(ng-click="removeException(ex)") {{ex.cause}}
     .ui.bottom.sidebar.general.message
         .ui.message {{gGeneralMessage}}
+        
     #app(ng-cloak).pusher
-        #menu.ui.inverted.main.menu(ng-controller="TopBarCtrl")
+        #topBar.ui.inverted.main.menu(ng-controller="TopBarCtrl")
+            .project-new.ui.modal
+                i.close.icon
+                .header 
+                    New Project
+                .content
+                    .ui.form
+                        .field
+                            label Project Name
+                            input(type="text" ng-model="newProjectName")
+                .actions
+                    button.ui.button Cancel
+                    button.ui.positive.button(ng-click="createProject()") Create
+                        
             a.item(href="/#/start")
                 i.home.icon
                 | Home
-            a.item(href="/#/projectList")
+            .ui.projects.dropdown.link.item(href="/#/projectList")
                 i.folder.icon
-                | Projects
-            
+                span.text {{gCurrentProject ? gCurrentProject.name : "Projects" }}
+                .menu
+                    .header {{(gProjects && gProjects.length) ? "Projects" : "No Projects Exist"}}
+                    .item(ng-repeat="proj in gProjects" data-value="{{proj.id}}") {{proj.name}}
+                    .divider
+                    .item(data-value="__SEE_ALL__")
+                        i.list.icon
+                        i See All
+                    .item(data-value="__NEW_PROJECT__")
+                        i.plus.icon
+                        i Add Project...
             // .ui.inverted.right.menu
             //     .ui.dropdown.item
             //         img.title.bar.user.thumbnail(ng-src="{{gUserThumbnail}}" ng-show="gUserThumbnail")

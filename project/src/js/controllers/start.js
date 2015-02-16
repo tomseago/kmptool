@@ -8,8 +8,8 @@ kmptoolApp.controller('StartCtrl'
         Logger.info("StartCtrl factory");
         $scope.startMsg = "Hello from Angular";
 
-        $timeout(function() {
-            Logger.info("Launching timed message");
-            kmpSvc.showMessage("This is a message");
-        }, 2000);
+        // $timeout(function() {
+        //     Logger.info("Launching timed message");
+        //     kmpSvc.showMessage("This is a message");
+        // }, 2000);
     }])

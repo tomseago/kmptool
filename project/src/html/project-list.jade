@@ -12,11 +12,12 @@ mixin deleteButton(id, onClick)
 
 .project-list.page
     .three.quarters.centered.area
-        h1.ui.header Projects
+        h1.ui.header All Projects
         
         .ui.animated.celled.list.of.projects
-            .project.item(ng-repeat="project in projects" ng-click="openProject($event, project)")
+            .project.item(ng-repeat="project in gProjects" ng-click="openProject($event, project)")
                 +deleteButton("project.id", "deleteProject($event, project)")
                 .content
                     h2.name.header {{project.name}}
-                    
+        button.ui.button(ng-click="openNewDialog()") Add Project
+

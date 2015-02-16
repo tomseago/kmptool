@@ -1,0 +1,32 @@
+mixin deleteButton(id, onClick)
+    .ui.right.floated.delete-button
+        button.state.ui.compact.red.icon.button(ng-click=id+"_del_button = true; $event.stopPropagation();", ng-hide=id+"_del_button")
+            i.trash.icon
+        .state(ng-show=id+"_del_button")
+            .label Delete?
+            button.ui.compact.red.icon.button(ng-click=onClick)
+                i.check.icon
+            button.ui.compact.icon.button(ng-click=id+"_del_button = false; $event.stopPropagation();")
+                i.undo.icon
+
+.ships.page.ui.pushable
+    .ui.ship-list.sidebar(ng-controller="ShipListCtrl")
+        .guts
+            .ui.header Select a ship...
+            .ui.animated.celled.list
+                .item(ng-repeat="ship in ships track by ship.id" ng-click="selectShip(ship)") 
+                    //+deleteButton("ship.id", "deleteShip($event, ship)")
+                    .content
+                        .name {{ship.name}}
+            .ui.fluid.action.input
+                input(type="text" placeholder="New ship name" ng-model="newShipName" kmp-key-bind="{enter:'addNewShip()'}")
+                .ui.positive.button(ng-click="addNewShip()") Add
+    
+    .ui.big.right.attached.icon.fixed.launch.button
+        i.rocket.icon
+        
+    .pusher
+        .ui.basic.segment(ng-controller="ShipCtrl")
+            h1 {{currentShip.name}}
+    
+

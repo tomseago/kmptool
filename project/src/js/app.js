@@ -10,9 +10,8 @@ var DocCookies = require("doc-cookies");
 
 Logger.DO_COLOR = false;
 
-// Enable all semantic-ui dropdowns
-$('.ui.dropdown').dropdown();
-
+// At one point we enabled all the semantic-ui dropdowns here. That is wrong though
+// because if we do that, we can't override the action, etc.
 
 // // Monkey patch the string object
 // /**
@@ -61,6 +60,10 @@ kmptoolApp = angular.module("kmptoolApp", [
         }).when('/projectList', {
             templateUrl : 'html/project-list.html'
             , controller : "ProjectListCtrl"
+
+        }).when('/ships', {
+            templateUrl : 'html/ships.html'
+            , controller : "ShipsCtrl"
 
         }).otherwise({
             redirectTo : '/start'
@@ -128,8 +131,8 @@ kmptoolApp = angular.module("kmptoolApp", [
     //   A central service for the app
 
     .factory('kmpSvc', 
-        ["$animate", "$rootScope", "$location", "$timeout", "$http", "$route", "$injector"
-        , function($animate, $rootScope, $location, $timeout, $http, $route, $injector) {
+        ["$animate", "$rootScope", "$location", "$timeout", "$http", "$route", "$injector", "kmpData"
+        , function($animate, $rootScope, $location, $timeout, $http, $route, $injector, kmpData) {
 
         // Used to handle automatic reloads more quietly
         var ignoreRouteChangeError = false;
@@ -182,6 +185,63 @@ kmptoolApp = angular.module("kmptoolApp", [
             }
         }
         
+        ///////////////////////////////////////////////////////////////
+        // Data things
+        
+        // We maintain a list of the project objects and the current one here
+        // in the root scope
+        $rootScope.gProjects = [];
+        $rootScope.gCurrentProject = null;
+        
+        Logger.infoi("Checking local environment for indexed db");
+        kmpData.checkEnvironment(function(err) {
+            if (err) {
+                showError(err);
+                return;
+            }
+            
+            reloadProjects();
+        });
+        
+        function reloadProjects() {
+            Logger.infoi("Reloading projects for the root scope");
+            kmpData.getProjects(function(err, data) {
+                if (err) {
+                    Logger.error(err);
+                    return;
+                }
+                
+                $timeout(function() {
+                    Logger.infoi("Reloaded projects: ", data);
+                    $rootScope.gProjects = data;
+                    
+                    var id = localGet("currentProjectId");
+                    if (!id && data[0]) id = data[0].id;
+                    setCurrentProjectById(id);
+                });
+            });
+        }
+        
+        $rootScope.$on("kmpProjectsChanged", function() {
+            $timeout(reloadProjects, 10);
+        });
+        
+        function setCurrentProjectById(id) {
+            if (!id) return;
+
+            if ($rootScope.gCurrentProject && $rootScope.gCurrentProject.id == id) return;
+            
+            var proj = _.find($rootScope.gProjects, function(a) { return a.id == id });
+            if (proj) {
+                Logger.infoi("Setting current project to ",proj);
+                $rootScope.gCurrentProject = proj;
+                
+                localSet("currentProjectId", id);
+            } else {
+                Logger.infoi("Did not find project with id ",id);
+            }
+        }
+
         ///////////////////////////////////////////////////////////////
         function getAgent() {
             if (!navigator) {
@@ -329,6 +389,23 @@ kmptoolApp = angular.module("kmptoolApp", [
         //     mixpanel.people.set(forMix);
         // }
 
+        /////////////////////////////////////////////////////////////////////////////////////
+
+        /**
+         * Navigate to a particular path. Also scroll back to the top of the page and possibly
+         * do some analytics.
+         */
+        function gotoPage(path) {
+            $timeout(function() {
+                $location.path(path);
+                
+                // Scroll back to the top
+                window.scrollTo(0,0);
+            });
+        }
+        
+        // Convenience for use directly from ng-click 
+        $rootScope.gGotoPage = gotoPage;
 
         /////////////////////////////////////////////////////////////////////////////////////
         //
@@ -341,8 +418,21 @@ kmptoolApp = angular.module("kmptoolApp", [
 
             , aTrack: aTrack
             // Don't expose the other analytics things because they all happen inside here
+            
+            , localGet: localGet
+            , localSet: localSet
+            
+            , setCurrentProjectById: setCurrentProjectById
+            
+            , gotoPage: gotoPage
         }
     }])
+
+        /////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////
+
 
     // Needed to make modals go away properly
     .directive("kmpRemoveOnScopeDeath", function() {
@@ -416,7 +506,7 @@ kmptoolApp = angular.module("kmptoolApp", [
         }
 
         return function (scope, element, attrs) {
-            var bindings = map(scope.$eval(attrs.keyBind));
+            var bindings = map(scope.$eval(attrs.kmpKeyBind));
             element.bind("keydown", function (event) {
                 if (bindings.hasOwnProperty(event.which)) {
                     scope.$apply(function() {

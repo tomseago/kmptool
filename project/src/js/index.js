@@ -6,6 +6,12 @@
 require("logger");
 
 require("./app");
+require("./services/data");
+
 require("./controllers/start");
 require("./controllers/project-list");
 require("./controllers/top-bar");
+
+require("./controllers/ships");
+require("./controllers/ship-list");
+require("./controllers/ship");
